@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://127.0.0.1:8000";
+const API_BASE_URL = "https://mental-health-score-prediction-rs7h.onrender.com";
 
 const RING_CIRCUMFERENCE = 2 * Math.PI * 86; // matches r=86 in the SVG
 
