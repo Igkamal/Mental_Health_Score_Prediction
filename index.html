@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Mental Health Check-In</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="bg-scene" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" type="button">
+    <span class="theme-icon" id="theme-icon">&#9728;</span>
+  </button>
+
+  <main class="page">
+
+    <header class="hero">
+      <p class="hero-eyebrow">A quick check-in</p>
+      <h1 class="hero-title">How are your habits<br>shaping your headspace?</h1>
+      <p class="hero-sub">Answer a few questions about your day-to-day life and social media use. A model trained on student survey data will estimate a mental health score from 0&ndash;10.</p>
+    </header>
+
+    <form id="predict-form" class="card form-card" novalidate>
+
+      <div class="form-section">
+        <h2 class="section-title"><span class="section-num">01</span>About you</h2>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" min="10" max="100" value="21" required>
+          </div>
+
+          <div class="field">
+            <label for="country">Country</label>
+            <input type="text" id="country" name="country" placeholder="e.g. India" value="India" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Gender</label>
+          <div class="pill-group" data-field="gender">
+            <button type="button" class="pill active" data-value="Female">Female</button>
+            <button type="button" class="pill" data-value="Male">Male</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="academic_level">Academic level</label>
+          <select id="academic_level" name="academic_level" required>
+            <option value="High School">High School</option>
+            <option value="Undergraduate" selected>Undergraduate</option>
+            <option value="Graduate">Graduate</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2 class="section-title"><span class="section-num">02</span>Social media use</h2>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="most_used_platform">Most used platform</label>
+            <select id="most_used_platform" name="most_used_platform" required>
+              <option value="Instagram">Instagram</option>
+              <option value="TikTok">TikTok</option>
+              <option value="YouTube">YouTube</option>
+              <option value="Facebook">Facebook</option>
+              <option value="Snapchat">Snapchat</option>
+              <option value="Twitter">Twitter</option>
+              <option value="LinkedIn">LinkedIn</option>
+              <option value="WhatsApp">WhatsApp</option>
+              <option value="WeChat">WeChat</option>
+              <option value="LINE">LINE</option>
+              <option value="KakaoTalk">KakaoTalk</option>
+              <option value="VKontakte">VKontakte</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="purpose_of_use">Main purpose</label>
+            <select id="purpose_of_use" name="purpose_of_use" required>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Networking">Networking</option>
+              <option value="Education">Education</option>
+              <option value="News">News</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field slider-field">
+          <label for="avg_daily_usage_hours">Average daily usage <span class="slider-value" id="avg_daily_usage_hours-value">4.5 hrs</span></label>
+          <div class="slider-wrap">
+            <input type="range" id="avg_daily_usage_hours" name="avg_daily_usage_hours" min="0" max="24" step="0.1" value="4.5">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="daily_unlocks">Daily phone unlocks</label>
+          <input type="number" id="daily_unlocks" name="daily_unlocks" min="0" value="150" required>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2 class="section-title"><span class="section-num">03</span>Daily rhythm</h2>
+
+        <div class="field slider-field">
+          <label for="study_hours">Study hours <span class="slider-value" id="study_hours-value">3.0 hrs</span></label>
+          <div class="slider-wrap">
+            <input type="range" id="study_hours" name="study_hours" min="0" max="24" step="0.1" value="3.0">
+          </div>
+        </div>
+
+        <div class="field slider-field">
+          <label for="physical_activity_hours">Physical activity <span class="slider-value" id="physical_activity_hours-value">1.5 hrs</span></label>
+          <div class="slider-wrap">
+            <input type="range" id="physical_activity_hours" name="physical_activity_hours" min="0" max="6" step="0.1" value="1.5">
+          </div>
+        </div>
+
+        <div class="field slider-field">
+          <label for="sleep_hours_per_night">Sleep per night <span class="slider-value" id="sleep_hours_per_night-value">6.5 hrs</span></label>
+          <div class="slider-wrap">
+            <input type="range" id="sleep_hours_per_night" name="sleep_hours_per_night" min="0" max="24" step="0.1" value="6.5">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Stress level</label>
+          <div class="pill-group" data-field="stress_level">
+            <button type="button" class="pill" data-value="Low">Low</button>
+            <button type="button" class="pill active" data-value="Medium">Medium</button>
+            <button type="button" class="pill" data-value="High">High</button>
+            <button type="button" class="pill" data-value="Very High">Very High</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <p class="api-hint">Calling <code id="api-url-display">http://127.0.0.1:8000</code>/predict</p>
+        <button type="submit" class="submit-btn" id="submit-btn">
+          <span class="btn-label">Get my score</span>
+        </button>
+      </div>
+
+      <p class="form-error" id="form-error" hidden></p>
+    </form>
+
+    <!-- Processing sequence -->
+    <section class="card processing-card" id="processing-card" hidden aria-live="polite">
+      <div class="processing-ring">
+        <svg viewBox="0 0 80 80">
+          <circle class="processing-track" cx="40" cy="40" r="34"></circle>
+          <circle class="processing-spin" cx="40" cy="40" r="34"></circle>
+        </svg>
+      </div>
+      <ul class="processing-steps" id="processing-steps">
+        <li data-step="0"><span class="step-dot"></span>Reading your daily rhythm</li>
+        <li data-step="1"><span class="step-dot"></span>Weighing screen time patterns</li>
+        <li data-step="2"><span class="step-dot"></span>Cross-checking sleep &amp; stress</li>
+        <li data-step="3"><span class="step-dot"></span>Running the model</li>
+      </ul>
+    </section>
+
+    <!-- Result -->
+    <section class="card result-card" id="result-card" hidden aria-live="polite">
+      <canvas id="confetti-canvas"></canvas>
+
+      <p class="result-eyebrow">Your estimated score</p>
+
+      <div class="gauge-ring-wrap">
+        <svg class="gauge-ring" viewBox="0 0 200 200">
+          <circle class="ring-track" cx="100" cy="100" r="86"></circle>
+          <circle class="ring-fill" id="ring-fill" cx="100" cy="100" r="86"></circle>
+        </svg>
+        <div class="gauge-center">
+          <div class="result-score" id="result-score">0.0</div>
+          <div class="result-label" id="result-label">&mdash;</div>
+        </div>
+      </div>
+
+      <div class="insight-chips" id="insight-chips"></div>
+
+      <p class="result-note">This is a statistical estimate from survey data, not a diagnosis. If you're struggling, please talk to a counselor, doctor, or someone you trust.</p>
+
+      <button type="button" class="reset-btn" id="reset-btn">Check in again</button>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
